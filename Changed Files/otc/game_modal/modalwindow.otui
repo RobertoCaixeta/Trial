@@ -1,0 +1,56 @@
+ModalWindow < MainWindow
+  id: modalWindow
+  !text: tr('Modal Window')
+  size: 330 405
+  @onEscape: modules.game_modal.back()
+  $mobile:
+    size: 330 350
+  Button
+    id: jumpButtonRight
+    !text: tr('Jump!')
+    font: cipsoftFont
+    anchors.right: parent.right
+    anchors.bottom: parent.bottom
+    color: #ffffff
+    size: 45 21
+    @onClick: modules.game_modal.jumpLeft()
+
+  Button
+    id: jumpButtonLeft
+    !text: tr('Jump!')
+    font: cipsoftFont
+    anchors.left: parent.left
+    margin-bottom: 100
+    color: #ffffff
+    size: 45 21
+    @onClick: modules.game_modal.jumpRight()
+
+QuestTracker < MiniWindow
+  id: questTracker
+  !text: tr('Quest Tracker')
+  height: 60
+  icon: /images/topbuttons/quest_tracker
+
+  MiniWindowContents
+    padding-left: 5
+    padding-right: 5
+    padding-top: 5
+    layout: verticalBox
+
+    Panel
+      id: list
+      layout:
+        type: verticalBox
+        fit-children: true
+
+    Panel
+      height: 20
+      margin-top: 5
+      Button
+        !text: tr('Add Tracked Quest')
+        anchors.fill: parent
+        margin-left: 30
+        margin-right: 30 
+        font: cipsoftFont
+        color: #FFFFFF
+        @onClick: g_game.requestModal()
